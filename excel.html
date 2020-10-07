@@ -27,7 +27,20 @@
               // Here is your object
               var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
               var json_object = JSON.stringify(XL_row_object);
-              console.log(JSON.parse(json_object));
+              var result = JSON.parse(json_object);
+              for(var k in result) {
+                
+                
+                console.log(result[k]["Valitse nimesi listalta itsearviointia varten"],
+                            result[k]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                            result[k]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                            result[k]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                            result[k]["Viestintä. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                            result[k]["Yhteistyö. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"]
+                            
+                            )
+                
+                }
               jQuery( '#xlx_json' ).val( json_object );
             })
           };
