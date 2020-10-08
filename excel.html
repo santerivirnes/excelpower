@@ -14,7 +14,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
   <script>
       var ExcelToJSON = function() {
-
         this.parseExcel = function(file) {
           var reader = new FileReader();
 
@@ -41,6 +40,7 @@
                             )
                 
                 }
+              console.log(json_object);
               jQuery( '#xlx_json' ).val( json_object );
             })
           };

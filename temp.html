@@ -1,0 +1,158 @@
+</DOCTYPE html>
+
+<html>
+<head>
+<title>OTSIKKO</title>
+<meta charset="UTF-8"/>
+<style>
+    canvas {
+        width:200px;
+        height:200px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script>
+var ExcelToJSON = function() {
+
+    this.parseExcel = function(file) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        var data = e.target.result;
+        var workbook = XLSX.read(data, {
+          type: 'binary'
+        });
+        workbook.SheetNames.forEach(function(sheetName) {
+          // Here is your object
+          var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+          var json_object = JSON.stringify(XL_row_object);
+          
+          var result = JSON.parse(json_object);
+        //   console.log(result);
+        //   for(var k in result) {
+
+
+        //     console.log(result[k]["Valitse nimesi listalta itsearviointia varten"],
+        //                 result[k]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+        //                 result[k]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+        //                 result[k]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+        //                 result[k]["Viestintä. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+        //                 result[k]["Yhteistyö. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"]
+
+        //                 )
+
+        //     }
+          console.log("json object" + json_object)
+          for(var k in result){
+            
+            console.log(result[k]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"]);
+            var h2 = document.createElement("h2");
+            h2.innerHTML = result[k]["Valitse nimesi listalta itsearviointia varten"];
+            document.body.appendChild(h2)
+            var canvas = document.createElement("canvas");
+            canvas.setAttribute("id", result[k]["Valitse nimesi listalta itsearviointia varten"]);
+            document.body.appendChild(canvas);
+            var ctx = document.getElementById(result[k]["Valitse nimesi listalta itsearviointia varten"]);
+            var myChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+            labels: ['Arvojen maailma', 
+                     'Tulevaisuuden kuva',
+                     'Polku kulkea',
+                     'Viestintä',
+                     'Yhteistyö',
+                     'Keskinäinen kannustaminen',
+                     'Tilannetaju',
+                     'Päättäminen',
+                     'Joustoa!',
+                     'Energia',
+                     'Sisäinen eheys',
+                     'Ihmissuhteet'],
+            datasets: [{
+            // backgroundColor: '#ff6384',
+            borderColor: '#ff6384',
+            data: [result[k]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                   result[k]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                   result[k]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"], 6, 3 ,4 ,5 ,12],
+            label: 'Oma arviointi',
+            fill: false
+            }, {
+            // backgroundColor: '#36a2eb',
+            borderColor: '#36a2eb',
+            data: [15, 8, 6, 4],
+            hidden: true,
+            label: 'D1',
+            fill: false
+            }]
+            },
+            options: {
+            scales: {
+            angleLines: {
+            display: false
+            },
+            ticks: {
+            suggestedMin: 50,
+            suggestedMax: 100
+            }
+            }
+            }
+            });
+          }
+        })
+      };
+
+      reader.onerror = function(ex) {
+        console.log(ex);
+      };
+      reader.readAsBinaryString(file);
+    };
+};
+
+function muutaItseArviointi(evt) {
+
+    var files = evt.target.files; // FileList object
+    var xl2json = new ExcelToJSON();
+    
+    xl2json.parseExcel(files[0]);
+}
+
+function muutaMuidenArviointi(evt) {
+
+    var files = evt.target.files; // FileList object
+    var xl2json = new ExcelToJSON();
+    xl2json.parseExcel(files[0]);
+}
+
+
+
+
+</script>
+
+
+
+<h2>Lataa tähän Excel "itsearviointi":</h2>
+<form enctype="multipart/form-data">
+<input id="uploadItsearviointi" type=file name="files[]">
+</form>
+
+
+<h2>Lataa tähän Excel "muiden arviointi":</h2>
+<form enctype="multipart/form-data">
+<input id="uploadMuidenArviointi" type=file name="files[]">
+</form>
+
+
+  <script>
+      document.getElementById('uploadItsearviointi').addEventListener('change', muutaItseArviointi, false);
+      document.getElementById('uploadMuidenArviointi').addEventListener('change', muutaMuidenArviointi, false);
+  </script>
+</body>
+</html>
