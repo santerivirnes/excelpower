@@ -19,6 +19,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="kaavio.js"></script>
 <script>
 
 function getAvg(values) {
@@ -179,109 +180,47 @@ var ExcelToJSON = function() {
             var canvas = document.createElement("canvas");
             canvas.setAttribute("id", result[k]["Valitse nimesi listalta itsearviointia varten"]);
             document.body.appendChild(canvas);
-            // Chart code starts
-
-            // Chart options
-            var chartOptions = {
-                responsive: false,
-                maintainAspectRatio: true,
-                tooltips: {
-                    enabled: false
-                },
-                legend: {
-                    onClick: function (lgnd) {
-                        lgnd.stopPropagation();
-                    },
-                    position: 'right'
-                },
-                animation: {
-                    duration: 0
-                },
-                hover: {
-                    mode: null
-                },
-                scale: {
-                    ticks: {
-                        beginAtZero: true,
-                        max: 10,
-                        stepSize: 5
-                    }
-                }
-            };
-            // Chart options end
-
-            // Chart data
-            var chartLabels = [
-                'Arvojen maailma', 
-                'Tulevaisuuden kuva',
-                'Polku kulkea',
-                'Viestintä',
-                'Yhteistyö',
-                'Keskinäinen kannustaminen',
-                'Tilannetaju',
-                'Päättäminen',
-                'Joustoa!',
-                'Energia',
-                'Sisäinen eheys',
-                'Ihmissuhteet'
+            var canvas2 = document.createElement("canvas");
+            canvas2.setAttribute("id", result[k]["Valitse nimesi listalta itsearviointia varten"] + "_bar");
+            document.body.appendChild(canvas2);
+            var canvas3 = document.createElement("canvas");
+            canvas3.setAttribute("id", result[k]["Valitse nimesi listalta itsearviointia varten"] + "_bar2");
+            document.body.appendChild(canvas3);
+            var omaDataNimi = result[k]["Valitse nimesi listalta itsearviointia varten"];
+            var omaData = [
+                           result[k]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Viestintä. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Yhteistyö. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Keskinäinen kannustaminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Tilannetaju. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Päättäminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Joustoa! Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Energia. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Sisäinen eheys. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                           result[k]["Ihmissuhteet. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"]
+                          ];
+            var muidenData = [
+            getAvg(arvot),
+            getAvg(tulevaisuus),
+            getAvg(polku),
+            getAvg(viestinta),
+            getAvg(yhteistyo),
+            getAvg(keskinainen),
+            getAvg(tilanne),
+            getAvg(paattaminen),
+            getAvg(jousto),
+            getAvg(energia),
+            getAvg(sisainen),
+            getAvg(suhteet)
             ];
 
-            var chartOwnData = [
-                result[k]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Viestintä. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Yhteistyö. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Keskinäinen kannustaminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Tilannetaju. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Päättäminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Joustoa! Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Energia. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Sisäinen eheys. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                result[k]["Ihmissuhteet. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"]
-            ];
-
-            var chartOthersData = [
-                getAvg(arvot),
-                getAvg(tulevaisuus),
-                getAvg(polku),
-                getAvg(viestinta),
-                getAvg(yhteistyo),
-                getAvg(keskinainen),
-                getAvg(tilanne),
-                getAvg(paattaminen),
-                getAvg(jousto),
-                getAvg(energia),
-                getAvg(sisainen),
-                getAvg(suhteet)
-            ];
-            // Chart data ends
-
-            var chartData = {
-                labels: chartLabels,
-                datasets: [{
-                        backgroundColor: '#ff6384',
-                        borderColor: '#ff6384',
-                        data: chartOwnData,
-                        label: 'Oma arvio',
-                        fill: false
-                    }, {
-                        backgroundColor: '#36a2eb',
-                        borderColor: '#36a2eb',
-                        data: chartOthersData,
-                        label: 'Muiden arvio',
-                        fill: false
-                    }]
-            };
-
-            var ctx = document.getElementById(result[k]["Valitse nimesi listalta itsearviointia varten"]);
-
-            var myRadarChart = new Chart(ctx, {
-                type: 'radar',
-                data: chartData,
-                options: chartOptions
-            });
-            // Chart code ends
+            // Chart
+            chartRadar(omaDataNimi, omaData, muidenData);
+            chartBar(omaDataNimi, omaData, muidenData);
+            chartBar2(omaDataNimi, omaData, muidenData);
+            // Chart
             
             
             
