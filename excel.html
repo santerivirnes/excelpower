@@ -206,7 +206,7 @@ doc.save(pdfNimeaja(kokoNimi) + '.pdf');
       
 function keskiHajonta(keskiArvo1, keskiArvo2) {
   if(keskiArvo1 == null || keskiArvo2 == null){
-    return null
+    return 0
   } else {
 		return math.format(math.std(keskiArvo1, keskiArvo2), {precision: 2});    // palauttaa 2 desimaalin tarkkuudella
   }
@@ -220,7 +220,7 @@ function getAvg(values) {
   var total = 0;
   var divider = 0;
   for(var i = 0; i < values.length; i++) {
-    if(values[i] != null){
+    if(values[i] != 0){
       total += Number.parseFloat(values[i]);
       divider += 1;
     }
@@ -228,7 +228,7 @@ function getAvg(values) {
   if(divider > 0 ){
   return total / divider;
 } else {
-  return null;
+  return 0;
 }
 }
 }
