@@ -200,6 +200,10 @@ doc.autoTable({ startY: taulukonloppu + 30,
 doc.save(pdfNimeaja(kokoNimi) + '.pdf');
 }
 
+
+
+
+      
 function keskiHajonta(keskiArvo1, keskiArvo2) {
   if(keskiArvo1 == null || keskiArvo2 == null){
     return null
@@ -207,11 +211,7 @@ function keskiHajonta(keskiArvo1, keskiArvo2) {
 		return math.format(math.std(keskiArvo1, keskiArvo2), {precision: 2});    // palauttaa 2 desimaalin tarkkuudella
   }
   }
-  function pyoristys(luku) {
 
-return luku.toFixed(2);
-
-}
 function getAvg(values) {
   if (!Array.isArray(values) || !values.length) {
    return 0;
@@ -305,67 +305,67 @@ var ExcelToJSON = function() {
           var kokoSuhteet = [];
           for(var z in result){
             if(result[z]["Valitse nimesi listalta itsearviointia varten"] != "Response"){
-                var itseArvot = [ json_muiden[z]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"], 
-                                  json_muiden[z]["__EMPTY"], 
-                                  json_muiden[z]["__EMPTY_1"],
-                                  json_muiden[z]["__EMPTY_2"]];
+                var itseArvot = [ result[z]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"], 
+                                  result[z]["__EMPTY"], 
+                                  result[z]["__EMPTY_1"],
+                                  result[z]["__EMPTY_2"]];
                 kokoItseArvot.push(getAvg(itseArvot));
-                var itseTulevaisuus = [ json_muiden[z]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                        json_muiden[z]["__EMPTY_3"],
-                                        json_muiden[z]["__EMPTY_4"],
-                                        json_muiden[z]["__EMPTY_5"]];
+                var itseTulevaisuus = [ result[z]["Tulevaisuuden kuva. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                        result[z]["__EMPTY_3"],
+                                        result[z]["__EMPTY_4"],
+                                        result[z]["__EMPTY_5"]];
                 kokoItseTulevaisuus.push(getAvg(itseTulevaisuus));
-                var itsePolku = [ json_muiden[z]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                  json_muiden[z]["__EMPTY_6"],
-                                  json_muiden[z]["__EMPTY_7"],
-                                  json_muiden[z]["__EMPTY_8"]];
+                var itsePolku = [ result[z]["Polku kulkea. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                  result[z]["__EMPTY_6"],
+                                  result[z]["__EMPTY_7"],
+                                  result[z]["__EMPTY_8"]];
                 kokoItsePolku.push(getAvg(itsePolku));
-                var itseViestinta = [ json_muiden[z]["Viestintä. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                      json_muiden[z]["__EMPTY_9"],
-                                      json_muiden[z]["__EMPTY_10"],
-                                      json_muiden[z]["__EMPTY_11"]];
+                var itseViestinta = [ result[z]["Viestintä. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                      result[z]["__EMPTY_9"],
+                                      result[z]["__EMPTY_10"],
+                                      result[z]["__EMPTY_11"]];
                 kokoItseViestinta.push(getAvg(itseViestinta));
-                var itseYhteistyo = [ json_muiden[z]["Yhteistyö. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                      json_muiden[z]["__EMPTY_12"],
-                                      json_muiden[z]["__EMPTY_13"],
-                                      json_muiden[z]["__EMPTY_14"]];
+                var itseYhteistyo = [ result[z]["Yhteistyö. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                      result[z]["__EMPTY_12"],
+                                      result[z]["__EMPTY_13"],
+                                      result[z]["__EMPTY_14"]];
                 kokoItseYhteistyo.push(getAvg(itseYhteistyo));
-                var itseKeskinainen = [json_muiden[z]["Keskinäinen kannustaminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                      json_muiden[z]["__EMPTY_15"],
-                                      json_muiden[z]["__EMPTY_16"],
-                                      json_muiden[z]["__EMPTY_17"]];
+                var itseKeskinainen = [result[z]["Keskinäinen kannustaminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                      result[z]["__EMPTY_15"],
+                                      result[z]["__EMPTY_16"],
+                                      result[z]["__EMPTY_17"]];
                 kokoItseKeskinainen.push(getAvg(itseKeskinainen));
-                var itseTilanne = [ json_muiden[z]["Tilannetaju. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                    json_muiden[z]["__EMPTY_18"],
-                                    json_muiden[z]["__EMPTY_19"],
-                                    json_muiden[z]["__EMPTY_20"]];
+                var itseTilanne = [ result[z]["Tilannetaju. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                    result[z]["__EMPTY_18"],
+                                    result[z]["__EMPTY_19"],
+                                    result[z]["__EMPTY_20"]];
                 kokoItseTilanne.push(getAvg(itseKeskinainen));
-                var itsePaattaminen = [ json_muiden[z]["Päättäminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                        json_muiden[z]["__EMPTY_21"],
-                                        json_muiden[z]["__EMPTY_22"],
-                                        json_muiden[z]["__EMPTY_23"]];
+                var itsePaattaminen = [ result[z]["Päättäminen. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                        result[z]["__EMPTY_21"],
+                                        result[z]["__EMPTY_22"],
+                                        result[z]["__EMPTY_23"]];
                 kokoItsePaattaminen.push(getAvg(itsePaattaminen));
-                var itseJousto = [  json_muiden[z]["Joustoa! Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                    json_muiden[z]["__EMPTY_24"],
-                                    json_muiden[z]["__EMPTY_25"],
-                                    json_muiden[z]["__EMPTY_26"]];
+                var itseJousto = [  result[z]["Joustoa! Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                    result[z]["__EMPTY_24"],
+                                    result[z]["__EMPTY_25"],
+                                    result[z]["__EMPTY_26"]];
                 kokoItseJousto.push(getAvg(itseJousto));
-                var itseEnergia = [ json_muiden[z]["Energia. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                    json_muiden[z]["__EMPTY_27"],
-                                    json_muiden[z]["__EMPTY_28"],
-                                    json_muiden[z]["__EMPTY_29"]];
+                var itseEnergia = [ result[z]["Energia. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                    result[z]["__EMPTY_27"],
+                                    result[z]["__EMPTY_28"],
+                                    result[z]["__EMPTY_29"]];
                 kokoItseEnergia.push(getAvg(itseEnergia));
-                var itseSisainen = [  json_muiden[z]["Sisäinen eheys. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                      json_muiden[z]["__EMPTY_30"],
-                                      json_muiden[z]["__EMPTY_31"],
-                                      json_muiden[z]["__EMPTY_32"]];
+                var itseSisainen = [  result[z]["Sisäinen eheys. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                      result[z]["__EMPTY_30"],
+                                      result[z]["__EMPTY_31"],
+                                      result[z]["__EMPTY_32"]];
                 kokoItseSisainen.push(getAvg(itseSisainen));
-                var itseSuhteet = [ json_muiden[z]["Ihmissuhteet. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
-                                    json_muiden[z]["__EMPTY_33"],
-                                    json_muiden[z]["__EMPTY_34"],
-                                    json_muiden[z]["__EMPTY_35"]];
+                var itseSuhteet = [ result[z]["Ihmissuhteet. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"],
+                                    result[z]["__EMPTY_33"],
+                                    result[z]["__EMPTY_34"],
+                                    result[z]["__EMPTY_35"]];
                 kokoItseSuhteet.push(getAvg(itseSuhteet));
-
+      
             }
 
 
@@ -667,49 +667,48 @@ var ExcelToJSON = function() {
             
 
                               let arvotaulukko = [
-                                ["Energia",avgItseEnergia,avgEnergia,keskiHajontaEnergia],
-                                ["Sisäinen eheys",avgItseSisainen,avgSisainen,keskiHajontaSisainen],
-                                ["Ihmissuhteet",avgItseSuhteet,avgSuhteet,keskiHajontaSuhteet],
-                                ["Arvojen maailma",avgItseArvot,avgArvot,keskiHajontaArvot],
-                                ["Tulevaisuuden kuva",avgItseTulevaisuus,avgTulevaisuus,keskiHajontaTulevaisuus],
-                                ["Polku kulkea",avgItsePolku,avgPolku,keskiHajontaPolku],
-                                ["Viestintä",avgItseViestinta,avgViestinta,keskiHajontaViestinta],
-                                ["Yhteistyö",avgItseYhteistyo,avgYhteistyo,keskiHajontaYhteistyo],
-                                ["Keskinäinen kannustaminen",avgItseKeskinainen,avgKeskinainen,keskiHajontaKeskinainen],
-                                ["Tilannetaju",avgItseTilanne,avgTilanne,keskiHajontaTilanne],
-                                ["Päättäminen",avgItsePaattaminen,avgPaattaminen,keskiHajontaPaattaminen],
-                                ["Joustoa!",avgItseJousto,avgJousto,keskiHajontaJousto],
-                                ["Energia",getAvg(kokoItseEnergia),avgItseEnergia],
-                                ["Sisäinen eheys",getAvg(kokoItseSisainen),avgItseSisainen],
-                                ["Ihmissuhteet",getAvg(kokoItseSuhteet),avgItseSuhteet],
-                                ["Arvojen maailma",getAvg(kokoItseArvot),avgItseArvot],
-                                ["Tulevaisuuden kuva",getAvg(kokoItseTulevaisuus),avgItseTulevaisuus],
-                                ["Polku kulkea",getAvg(kokoItsePolku),avgItsePolku],
-                                ["Viestintä",getAvg(kokoItseViestinta),avgItseViestinta],
-                                ["Yhteistyö",getAvg(kokoItseYhteistyo),avgItseYhteistyo],
-                                ["Keskinäinen kannustaminen",getAvg(kokoItseKeskinainen),avgItseKeskinainen],
-                                ["Tilannetaju",getAvg(kokoItseTilanne),avgItseTilanne],
-                                ["Päättäminen",getAvg(kokoItsePaattaminen),avgItsePaattaminen],
-                                ["Joustoa!",getAvg(kokoItseJousto),avgItseJousto],
-                                ["Energia",getAvg(kokoEnergia),avgEnergia],
-                                ["Sisäinen eheys",getAvg(kokoSisainen),avgSisainen],
-                                ["Ihmissuhteet",getAvg(kokoSuhteet),avgSuhteet],
-                                ["Arvojen maailma",getAvg(kokoArvot),avgArvot],
-                                ["Tulevaisuuden kuva",getAvg(kokoTulevaisuus),avgTulevaisuus],
-                                ["Polku kulkea",getAvg(kokoPolku),avgPolku],
-                                ["Viestintä",getAvg(kokoViestinta),avgViestinta],
-                                ["Yhteistyö",getAvg(kokoYhteistyo),avgYhteistyo],
-                                ["Keskinäinen kannustaminen",getAvg(kokoKeskinainen),avgKeskinainen],
-                                ["Tilannetaju",getAvg(kokoTilanne),avgTilanne],
-                                ["Päättäminen",getAvg(kokoPaattaminen),avgPaattaminen],
-                                ["Joustoa!",getAvg(kokoJousto),avgJousto],
+                                ["Energia",avgItseEnergia.toFixed(2),avgEnergia.toFixed(2),keskiHajontaEnergia],
+                                ["Sisäinen eheys",avgItseSisainen.toFixed(2),avgSisainen.toFixed(2),keskiHajontaSisainen],
+                                ["Ihmissuhteet",avgItseSuhteet.toFixed(2),avgSuhteet.toFixed(2),keskiHajontaSuhteet],
+                                ["Arvojen maailma",avgItseArvot.toFixed(2),avgArvot.toFixed(2),keskiHajontaArvot],
+                                ["Tulevaisuuden kuva",avgItseTulevaisuus.toFixed(2),avgTulevaisuus.toFixed(2),keskiHajontaTulevaisuus],
+                                ["Polku kulkea",avgItsePolku.toFixed(2),avgPolku.toFixed(2),keskiHajontaPolku],
+                                ["Viestintä",avgItseViestinta.toFixed(2),avgViestinta.toFixed(2),keskiHajontaViestinta],
+                                ["Yhteistyö",avgItseYhteistyo.toFixed(2),avgYhteistyo.toFixed(2),keskiHajontaYhteistyo],
+                                ["Keskinäinen kannustaminen",avgItseKeskinainen.toFixed(2),avgKeskinainen.toFixed(2),keskiHajontaKeskinainen],
+                                ["Tilannetaju",avgItseTilanne.toFixed(2),avgTilanne.toFixed(2),keskiHajontaTilanne],
+                                ["Päättäminen",avgItsePaattaminen.toFixed(2),avgPaattaminen.toFixed(2),keskiHajontaPaattaminen],
+                                ["Joustoa!",avgItseJousto.toFixed(2),avgJousto.toFixed(2),keskiHajontaJousto],
+                                ["Energia",getAvg(kokoItseEnergia).toFixed(2),avgItseEnergia.toFixed(2)],
+                                ["Sisäinen eheys",getAvg(kokoItseSisainen).toFixed(2),avgItseSisainen.toFixed(2)],
+                                ["Ihmissuhteet",getAvg(kokoItseSuhteet).toFixed(2),avgItseSuhteet.toFixed(2)],
+                                ["Arvojen maailma",getAvg(kokoItseArvot).toFixed(2),avgItseArvot.toFixed(2)],
+                                ["Tulevaisuuden kuva",getAvg(kokoItseTulevaisuus).toFixed(2),avgItseTulevaisuus.toFixed(2)],
+                                ["Polku kulkea",getAvg(kokoItsePolku).toFixed(2),avgItsePolku.toFixed(2)],
+                                ["Viestintä",getAvg(kokoItseViestinta).toFixed(2),avgItseViestinta.toFixed(2)],
+                                ["Yhteistyö",getAvg(kokoItseYhteistyo).toFixed(2),avgItseYhteistyo.toFixed(2)],
+                                ["Keskinäinen kannustaminen",getAvg(kokoItseKeskinainen).toFixed(2),avgItseKeskinainen.toFixed(2)],
+                                ["Tilannetaju",getAvg(kokoItseTilanne).toFixed(2),avgItseTilanne.toFixed(2)],
+                                ["Päättäminen",getAvg(kokoItsePaattaminen).toFixed(2),avgItsePaattaminen.toFixed(2)],
+                                ["Joustoa!",getAvg(kokoItseJousto).toFixed(2),avgItseJousto.toFixed(2)],
+                                ["Energia",getAvg(kokoEnergia).toFixed(2),avgEnergia.toFixed(2)],
+                                ["Sisäinen eheys",getAvg(kokoSisainen).toFixed(2),avgSisainen.toFixed(2)],
+                                ["Ihmissuhteet",getAvg(kokoSuhteet).toFixed(2),avgSuhteet.toFixed(2)],
+                                ["Arvojen maailma",getAvg(kokoArvot).toFixed(2),avgArvot.toFixed(2)],
+                                ["Tulevaisuuden kuva",getAvg(kokoTulevaisuus).toFixed(2),avgTulevaisuus.toFixed(2)],
+                                ["Polku kulkea",getAvg(kokoPolku).toFixed(2),avgPolku.toFixed(2)],
+                                ["Viestintä",getAvg(kokoViestinta).toFixed(2),avgViestinta.toFixed(2)],
+                                ["Yhteistyö",getAvg(kokoYhteistyo).toFixed(2),avgYhteistyo.toFixed(2)],
+                                ["Keskinäinen kannustaminen",getAvg(kokoKeskinainen).toFixed(2),avgKeskinainen.toFixed(2)],
+                                ["Tilannetaju",getAvg(kokoTilanne).toFixed(2),avgTilanne.toFixed(2)],
+                                ["Päättäminen",getAvg(kokoPaattaminen).toFixed(2),avgPaattaminen.toFixed(2)],
+                                ["Joustoa!",getAvg(kokoJousto).toFixed(2),avgJousto.toFixed(2)],
                               ];
-
+            
             var h2 = document.createElement("h2");
             h2.innerHTML = result[k]["Valitse nimesi listalta itsearviointia varten"];
             document.body.appendChild(h2)
-
-            
+                        
             
 
             var canvas = document.createElement("canvas");
