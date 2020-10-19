@@ -201,9 +201,17 @@ doc.save(pdfNimeaja(kokoNimi) + '.pdf');
 }
 
 function keskiHajonta(keskiArvo1, keskiArvo2) {
+  if(keskiArvo1 == null || keskiArvo2 == null){
+    return null
+  } else {
 		return math.format(math.std(keskiArvo1, keskiArvo2), {precision: 2});    // palauttaa 2 desimaalin tarkkuudella
-	}
-  
+  }
+  }
+  function pyoristys(luku) {
+
+return luku.toFixed(2);
+
+}
 function getAvg(values) {
   if (!Array.isArray(values) || !values.length) {
    return 0;
@@ -461,7 +469,7 @@ var ExcelToJSON = function() {
 
                   
 
-                  if(json_muiden[i]["Valitse henkilö jota arvioit"] != "Response"){
+                  if(result[k]["Valitse nimesi listalta itsearviointia varten"] == json_muiden[i]["Valitse henkilö jota arvioit"] && json_muiden[i]["Valitse henkilö jota arvioit"] != "Response"){
                               var itseArvot = [ json_muiden[i]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"], 
                                                 json_muiden[i]["__EMPTY"], 
                                                 json_muiden[i]["__EMPTY_1"],
@@ -522,8 +530,12 @@ var ExcelToJSON = function() {
                                                   json_muiden[i]["__EMPTY_34"],
                                                   json_muiden[i]["__EMPTY_35"]];
                               suhteet.push(getAvg(itseSuhteet));
-                              muidenkommenttiErityisenhyvaa.concat(" " + json_muiden[i]["Erityisen hyvää hänessä on.."]);
-                              muidenkommenttiMikaauttaisi.concat(" " + json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"]);
+                              if(json_muiden[i]["Erityisen hyvää hänessä on.."] != null){
+                              muidenkommenttiErityisenhyvaa =  muidenkommenttiErityisenhyvaa.concat(" " + json_muiden[i]["Erityisen hyvää hänessä on.."]);
+                              }
+                              if(json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"] != null){
+                              muidenkommenttiMikaauttaisi = muidenkommenttiMikaauttaisi.concat(" " + json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"]);
+                              }
                               
 
                   }
