@@ -266,6 +266,7 @@ var ExcelToJSON = function() {
             var btn = document.createElement("button");
             btn.innerHTML = "Analysoi";
             btn.setAttribute("onClick", "analysoi()");
+            btn.setAttribute("id", "analysoi");
             document.body.appendChild(btn);
           }
         })
@@ -288,6 +289,9 @@ function pdfNimeaja(nimi) {
 
 }
 function analysoi(){
+  var b = document.getElementById("analysoi");
+  b.setAttribute("disabled","");
+
   var result = JSON.parse(document.getElementById("xlx_json_itse").value);
 
   var json_muiden = JSON.parse(document.getElementById("xlx_json_muiden").value)
@@ -814,6 +818,7 @@ function analysoi(){
     luoPDF(omaDataNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko);
   }
 }
+b.removeAttribute("disabled","")
 }
 function arvioi() {
 
