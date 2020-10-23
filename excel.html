@@ -736,69 +736,85 @@ var ExcelToJSON = function() {
             canvas3.setAttribute("id", result[k]["Valitse nimesi listalta itsearviointia varten"] + "_bar2");
             document.body.appendChild(canvas3);
             var omaDataNimi = result[k]["Valitse nimesi listalta itsearviointia varten"];
-            var omaData = [
-                           getAvg(itseArvot),
-                           getAvg(itseTulevaisuus),
-                           getAvg(itsePolku),
-                           getAvg(itseViestinta),
-                           getAvg(itseYhteistyo),
-                           getAvg(itseKeskinainen),
-                           getAvg(itseTilanne),
-                           getAvg(itsePaattaminen),
-                           getAvg(itseJousto),
-                           getAvg(itseEnergia),
-                           getAvg(itseSisainen),
-                           getAvg(itseSisainen)
-                          ];
-            var muidenData = [
-            getAvg(arvot),
-            getAvg(tulevaisuus),
-            getAvg(polku),
-            getAvg(viestinta),
-            getAvg(yhteistyo),
-            getAvg(keskinainen),
-            getAvg(tilanne),
-            getAvg(paattaminen),
-            getAvg(jousto),
-            getAvg(energia),
-            getAvg(sisainen),
-            getAvg(suhteet)
-            ];
+            var chartLabels = [
+                        arvotaulukko[0][0],
+                        arvotaulukko[1][0],
+                        arvotaulukko[2][0],
+                        arvotaulukko[3][0],
+                        arvotaulukko[4][0],
+                        arvotaulukko[5][0],
+                        arvotaulukko[6][0],
+                        arvotaulukko[7][0],
+                        arvotaulukko[8][0],
+                        arvotaulukko[9][0],
+                        arvotaulukko[10][0],
+                        arvotaulukko[11][0]
+                    ];
 
-            var muidenOmaData = [
-            getAvg(kokoItseArvot),
-            getAvg(kokoItseTulevaisuus),
-            getAvg(kokoItsePolku),
-            getAvg(kokoItseViestinta),
-            getAvg(kokoItseYhteistyo),
-            getAvg(kokoItseKeskinainen),
-            getAvg(kokoItseTilanne),
-            getAvg(kokoItsePaattaminen),
-            getAvg(kokoItseJousto),
-            getAvg(kokoItseEnergia),
-            getAvg(kokoItseSisainen),
-            getAvg(kokoItseSuhteet)
-            ];
+            var omaData = [
+                        arvotaulukko[0][1],
+                        arvotaulukko[1][1],
+                        arvotaulukko[2][1],
+                        arvotaulukko[3][1],
+                        arvotaulukko[4][1],
+                        arvotaulukko[5][1],
+                        arvotaulukko[6][1],
+                        arvotaulukko[7][1],
+                        arvotaulukko[8][1],
+                        arvotaulukko[9][1],
+                        arvotaulukko[10][1],
+                        arvotaulukko[11][1]
+                    ];
+            var muidenData = [
+                        arvotaulukko[0][2],
+                        arvotaulukko[1][2],
+                        arvotaulukko[2][2],
+                        arvotaulukko[3][2],
+                        arvotaulukko[4][2],
+                        arvotaulukko[5][2],
+                        arvotaulukko[6][2],
+                        arvotaulukko[7][2],
+                        arvotaulukko[8][2],
+                        arvotaulukko[9][2],
+                        arvotaulukko[10][2],
+                        arvotaulukko[11][2]
+                    ];
+
+            var muidenOmaData = [     
+                        arvotaulukko[12][1],
+                        arvotaulukko[13][1],
+                        arvotaulukko[14][1],
+                        arvotaulukko[15][1],
+                        arvotaulukko[16][1],
+                        arvotaulukko[17][1],
+                        arvotaulukko[18][1],
+                        arvotaulukko[19][1],
+                        arvotaulukko[20][1],
+                        arvotaulukko[21][1],
+                        arvotaulukko[22][1],
+                        arvotaulukko[23][1]
+                    ];
+
             var muidenKokoData = [
-            getAvg(kokoArvot),
-            getAvg(kokoTulevaisuus),
-            getAvg(kokoPolku),
-            getAvg(kokoViestinta),
-            getAvg(kokoYhteistyo),
-            getAvg(kokoKeskinainen),
-            getAvg(kokoTilanne),
-            getAvg(kokoPaattaminen),
-            getAvg(kokoJousto),
-            getAvg(kokoEnergia),
-            getAvg(kokoSisainen),
-            getAvg(kokoSuhteet)
-            ];
+                        arvotaulukko[24][1],
+                        arvotaulukko[25][1],
+                        arvotaulukko[26][1],
+                        arvotaulukko[27][1],
+                        arvotaulukko[28][1],
+                        arvotaulukko[29][1],
+                        arvotaulukko[30][1],
+                        arvotaulukko[31][1],
+                        arvotaulukko[32][1],
+                        arvotaulukko[33][1],
+                        arvotaulukko[34][1],
+                        arvotaulukko[35][1]
+                    ];
             
             
             // Chart
-            chartRadar(omaDataNimi, omaData, muidenData);
-            chartBar(omaDataNimi, omaData, muidenOmaData);
-            chartBar2(omaDataNimi, muidenData, muidenKokoData);
+            chartRadar(omaDataNimi, chartLabels, omaData, muidenData);
+            chartBar(omaDataNimi, chartLabels, omaData, muidenOmaData);
+            chartBar2(omaDataNimi, chartLabels, muidenData, muidenKokoData);
             // Chart
             var canvasToImg1 = document.getElementById(result[k]["Valitse nimesi listalta itsearviointia varten"]);
             if (canvasToImg1.getContext) {

@@ -123,37 +123,22 @@ var chartOptions3 = {
 };
 // Chart options
 
-// Chart data
-var chartLabels = [
-    'Arvojen maailma', 
-    'Tulevaisuuden kuva',
-    'Polku kulkea',
-    'Viestintä',
-    'Yhteistyö',
-    'Keskinäinen kannustaminen',
-    'Tilannetaju',
-    'Päättäminen',
-    'Joustoa!',
-    'Energia',
-    'Sisäinen eheys',
-    'Ihmissuhteet'
-];
 
-function chartRadar(chartName, chartOwnData, chartOthersData) {
+function chartRadar(chartName, chartLabels, chartOwnData, chartOthersData) {
 
     var chartData = {
         labels: chartLabels,
         datasets: [{
-                backgroundColor: '#ff6384',
-                borderColor: '#ff6384',
+                backgroundColor: '#36a2eb',
+                borderColor: '#36a2eb',
                 data: chartOwnData,
                 label: 'Oma arvio',
                 fill: false,
                 radius: 0,
                 borderWidth: 1.5
             }, {
-                backgroundColor: '#36a2eb',
-                borderColor: '#36a2eb',
+                backgroundColor: '#ed7d31',
+                borderColor: '#ed7d31',
                 data: chartOthersData,
                 label: 'Muiden arvio',
                 fill: false,
@@ -171,15 +156,15 @@ function chartRadar(chartName, chartOwnData, chartOthersData) {
     // Chart code ends
 }
 
-function chartBar(chartName2, chartOwnData2, chartOthersData2) {
+function chartBar(chartName2, chartLabels, chartOwnData2, chartOthersData2) {
 
     // Chart data
 
     var chartData2 = {
         labels: chartLabels,
         datasets: [{
-                backgroundColor: '#ff6384',
-                borderColor: '#ff6384',
+                backgroundColor: '#ed7d31',
+                borderColor: '#ed7d31',
                 data: chartOthersData2,
                 label: 'Koko',
                 fill: false,
@@ -203,15 +188,15 @@ function chartBar(chartName2, chartOwnData2, chartOthersData2) {
     // Chart code ends
 }
 
-function chartBar2(chartName3, chartOwnData3, chartOthersData3) {
+function chartBar2(chartName3, chartLabels, chartOwnData3, chartOthersData3) {
 
     // Chart data
 
     var chartData3 = {
         labels: chartLabels,
         datasets: [{
-                backgroundColor: '#ff6384',
-                borderColor: '#ff6384',
+                backgroundColor: '#ed7d31',
+                borderColor: '#ed7d31',
                 data: chartOthersData3,
                 label: 'Koko',
                 fill: false,
