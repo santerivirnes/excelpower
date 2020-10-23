@@ -53,10 +53,6 @@ doc.setFontSize(15);
 doc.setFontType('normal');
 doc.text(10, 30, "Henkilökohtainen johtamistyyli - miten toimin muutoksen tuulissa"); 
 
-<<<<<<< HEAD
-
-doc.autoTable({ startY: 40, 
-=======
 // lisätään vastaajien määrä
 
 let vastaajia = 3;
@@ -64,7 +60,6 @@ doc.text(10, 40, "Palautetta vastaajasta antoi " + vastaajia + " henkilöä.");
 
 
 doc.autoTable({ startY: 50, 
->>>>>>> 1d58b0d0202a0822a68970d7fb418e6b51beb8b2
   head: [['', 'Oma arvio', 'Muiden arvio', 'Keskihajonta']],
   body: [
 
@@ -85,11 +80,6 @@ doc.autoTable({ startY: 50,
   ],
 })
 
-<<<<<<< HEAD
-// radarkaavion lisääminen
-
-doc.addImage(radarkaavio, "png", 10, 150);
-=======
 
 
 
@@ -98,7 +88,6 @@ doc.addImage(radarkaavio, "png", 10, 150);
 // radarkaavion lisääminen
 
 doc.addImage(radarkaavio, "png", 10, 170, 169, 91);
->>>>>>> 1d58b0d0202a0822a68970d7fb418e6b51beb8b2
 
 
 
@@ -137,11 +126,7 @@ doc.autoTable({ startY: 30,
 
       // pylväsdiagrammi 1:n lisääminen
 
-<<<<<<< HEAD
-      doc.addImage(pylvasdiagrammi1, "png", 10, 150);
-=======
       doc.addImage(pylvasdiagrammi1, "png", 10, 150, 169, 91);
->>>>>>> 1d58b0d0202a0822a68970d7fb418e6b51beb8b2
 
 // --------------------------------------------------------------------------------------
 // Sivu 3
@@ -175,11 +160,7 @@ doc.autoTable({ startY: 30,
 
       // pylväsdiagrammi 2:n lisääminen
 
-<<<<<<< HEAD
-      doc.addImage(pylvasdiagrammi2, "png", 10, 150);      
-=======
       doc.addImage(pylvasdiagrammi2, "png", 10, 150, 169, 91);      
->>>>>>> 1d58b0d0202a0822a68970d7fb418e6b51beb8b2
 
 // --------------------------------------------------------------------------------------
 // Sivu 4
@@ -643,15 +624,9 @@ var ExcelToJSON = function() {
             
             var omakommenttiErityisenhyvaa = result[k]["Missä olen erityisen hyvä?"];
             var omakommenttiMikaauttaisi = result[k]["Mikä auttaisi minua kehittymään vielä paremmaksi johtajaksi?"];
-<<<<<<< HEAD
 
             
 
-=======
-
-            
-
->>>>>>> 1d58b0d0202a0822a68970d7fb418e6b51beb8b2
             var avgEnergia = getAvg(energia);
             var avgItseEnergia = getAvg(itseEnergia);
             var keskiHajontaEnergia = keskiHajonta(avgItseEnergia, avgEnergia);

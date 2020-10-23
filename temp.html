@@ -36,7 +36,7 @@
 <script src="kaavio.js"></script>
 <script>
 
-function luoPDF(kokoNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko) {
+function luoPDF(N, kokoNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko) {
 
 // ALoitetaan PDF:n tekeminen
 
@@ -53,8 +53,11 @@ doc.setFontSize(15);
 doc.setFontType('normal');
 doc.text(10, 30, "Henkilökohtainen johtamistyyli - miten toimin muutoksen tuulissa"); 
 
+let vastaajia = N;
+doc.text(10, 40, "Palautetta vastaajasta antoi " + vastaajia + " henkilöä.");
 
-doc.autoTable({ startY: 40, 
+
+doc.autoTable({ startY: 50, 
   head: [['', 'Oma arvio', 'Muiden arvio', 'Keskihajonta']],
   body: [
 
@@ -77,7 +80,7 @@ doc.autoTable({ startY: 40,
 
 // radarkaavion lisääminen
 
-doc.addImage(radarkaavio, "png", 10, 150);
+doc.addImage(radarkaavio, "png", 10, 170, 169, 91);
 
 
 
@@ -116,7 +119,8 @@ doc.autoTable({ startY: 30,
 
       // pylväsdiagrammi 1:n lisääminen
 
-      doc.addImage(pylvasdiagrammi1, "png", 10, 150);
+      doc.addImage(pylvasdiagrammi1, "png", 10, 150, 169, 91);
+
 
 // --------------------------------------------------------------------------------------
 // Sivu 3
@@ -148,9 +152,9 @@ doc.autoTable({ startY: 30,
 })
 
 
-      // pylväsdiagrammi 2:n lisääminen
+     // pylväsdiagrammi 2:n lisääminen
 
-      doc.addImage(pylvasdiagrammi2, "png", 10, 150);      
+     doc.addImage(pylvasdiagrammi2, "png", 10, 150, 169, 91);     
 
 // --------------------------------------------------------------------------------------
 // Sivu 4
@@ -412,7 +416,7 @@ function analysoi(){
 
   for(var j in json_muiden){
     
-    var N = 0;
+    
     if(json_muiden[j]["Valitse henkilö jota arvioit"] != "Response" && json_muiden[j]["Valitse henkilö jota arvioit"] != "undefined"){
                       var itseArvot = [ json_muiden[j]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"], 
                                         json_muiden[j]["__EMPTY"], 
@@ -474,7 +478,7 @@ function analysoi(){
                                           json_muiden[j]["__EMPTY_34"],
                                           json_muiden[j]["__EMPTY_35"]];
                       kokoSuhteet.push(getAvg(itseSuhteet));
-                      N++;
+                   
 
           }
 
@@ -500,7 +504,7 @@ function analysoi(){
 
     var muidenkommenttiErityisenhyvaa = "";
     var muidenkommenttiMikaauttaisi = "";
-
+    var N = 0;
         for(var i in json_muiden){
 
           
@@ -567,12 +571,12 @@ function analysoi(){
                                           json_muiden[i]["__EMPTY_35"]];
                       suhteet.push(getAvg(itseSuhteet));
                       if(json_muiden[i]["Erityisen hyvää hänessä on.."] != null){
-                      muidenkommenttiErityisenhyvaa =  muidenkommenttiErityisenhyvaa.concat(" " + json_muiden[i]["Erityisen hyvää hänessä on.."]);
+                      muidenkommenttiErityisenhyvaa =  muidenkommenttiErityisenhyvaa.concat(" " + json_muiden[i]["Erityisen hyvää hänessä on.."] + "\n");
                       }
                       if(json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"] != null){
-                      muidenkommenttiMikaauttaisi = muidenkommenttiMikaauttaisi.concat(" " + json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"]);
+                      muidenkommenttiMikaauttaisi = muidenkommenttiMikaauttaisi.concat(" " + json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"] + "\n");
                       }
-                      
+                      N++;
 
           }
 
@@ -836,7 +840,7 @@ function analysoi(){
               
       
 
-    luoPDF(omaDataNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko);
+    luoPDF(N, omaDataNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko);
   }
 }
 b.removeAttribute("disabled","")
