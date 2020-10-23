@@ -257,8 +257,10 @@ var ExcelToJSON = function() {
           
 
           if(file["name"].includes("itsearvioinnit")){
+            console.log("muunnettuna : " + result)
             jQuery( '#xlx_json_itse' ).val( json_object );
           } else {
+            console.log("muunnettuna : " + result)
             jQuery( '#xlx_json_muiden' ).val( json_object );
           }
           
@@ -299,12 +301,8 @@ function analysoi(){
   
   var result = JSON.parse(document.getElementById("xlx_json_itse").value);
   var json_muiden = JSON.parse(document.getElementById("xlx_json_muiden").value);
-  for(var u in result){
-    for(var o in result[u]){
-      console.log(result[u][o]);
-    }
-  }
-  console.log(json_muiden);
+  console.log("result analysoi : " + result);
+  console.log("json_muiden analysoi : " + json_muiden);
   
   var kokoItseArvot = [];
   var kokoItseTulevaisuus = [];
@@ -414,7 +412,7 @@ function analysoi(){
 
   for(var j in json_muiden){
     
-
+    var N = 0;
     if(json_muiden[j]["Valitse henkilö jota arvioit"] != "Response" && json_muiden[j]["Valitse henkilö jota arvioit"] != "undefined"){
                       var itseArvot = [ json_muiden[j]["Arvojen maailma. Arviointiasteikko 1 = ei kuvaa henkilöä ollenkaan, 10 = kuvaa henkilöä täydellisesti"], 
                                         json_muiden[j]["__EMPTY"], 
@@ -476,7 +474,7 @@ function analysoi(){
                                           json_muiden[j]["__EMPTY_34"],
                                           json_muiden[j]["__EMPTY_35"]];
                       kokoSuhteet.push(getAvg(itseSuhteet));
-                      
+                      N++;
 
           }
 
