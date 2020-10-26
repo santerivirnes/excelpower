@@ -1,4 +1,12 @@
 
+Chart.plugins.register({
+  beforeDraw: function(chartInstance) {
+    let ctx = chartInstance.chart.ctx;
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+  }
+});
+
 // Chart options
 var chartOptions = {
     responsive: false,
@@ -179,8 +187,8 @@ function chartBar(chartName2, chartLabels, chartOwnData2, chartOthersData2) {
             }]
     };
 
-    var ctz = document.getElementById(chartName2 + "_bar");
-    var myRadarChart2 = new Chart(ctz, {
+    var ctx = document.getElementById(chartName2 + "_bar");
+    var myRadarChart2 = new Chart(ctx, {
         type: 'bar',
         data: chartData2,
         options: chartOptions2
@@ -211,8 +219,8 @@ function chartBar2(chartName3, chartLabels, chartOwnData3, chartOthersData3) {
             }]
     };
 
-    var cty = document.getElementById(chartName3 + "_bar2");
-    var myRadarChart3 = new Chart(cty, {
+    var ctx = document.getElementById(chartName3 + "_bar2");
+    var myRadarChart3 = new Chart(ctx, {
         type: 'bar',
         data: chartData3,
         options: chartOptions3

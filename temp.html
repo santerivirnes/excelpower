@@ -80,7 +80,7 @@ doc.autoTable({ startY: 50,
 
 // radarkaavion lisääminen
 
-doc.addImage(radarkaavio, "png", 10, 170, 169, 91, undefined,'FAST');
+doc.addImage(radarkaavio, "jpeg", 10, 170, 169, 91, "radar", "fast");
 
 
 
@@ -119,7 +119,7 @@ doc.autoTable({ startY: 30,
 
       // pylväsdiagrammi 1:n lisääminen
 
-      doc.addImage(pylvasdiagrammi1, "png", 10, 150, 169, 91, undefined,'FAST');
+      doc.addImage(pylvasdiagrammi1, "jpeg", 10, 150, 169, 91, "bar1", "fast");
 
 
 // --------------------------------------------------------------------------------------
@@ -154,7 +154,7 @@ doc.autoTable({ startY: 30,
 
      // pylväsdiagrammi 2:n lisääminen
 
-     doc.addImage(pylvasdiagrammi2, "png", 10, 150, 169, 91, undefined,'FAST');     
+     doc.addImage(pylvasdiagrammi2, "jpeg", 10, 150, 169, 91, "bar2", "fast");     
 
 // --------------------------------------------------------------------------------------
 // Sivu 4
@@ -836,17 +836,17 @@ function analysoi(){
     var canvasToImg1 = document.getElementById(result[k]["Valitse nimesi listalta itsearviointia varten"]);
     if (canvasToImg1.getContext) {
       var ctw = canvasToImg1.getContext("2d");                // Get the context for the canvas.
-      var myImage = canvasToImg1.toDataURL("image/png");      // Get the data as an image.
+      var myImage = canvasToImg1.toDataURL("image/jpeg");      // Get the data as an image.
     }
     var canvasToImg2 = document.getElementById(result[k]["Valitse nimesi listalta itsearviointia varten"] + "_bar");
     if (canvasToImg2.getContext) {
       var ctv = canvasToImg2.getContext("2d");                // Get the context for the canvas.
-      var myImage2 = canvasToImg2.toDataURL("image/png");      // Get the data as an image.
+      var myImage2 = canvasToImg2.toDataURL("image/jpeg");      // Get the data as an image.
     }
     var canvasToImg3 = document.getElementById(result[k]["Valitse nimesi listalta itsearviointia varten"] + "_bar2");
     if (canvasToImg3.getContext) {
       var ctu = canvasToImg3.getContext("2d");                // Get the context for the canvas.
-      var myImage3 = canvasToImg3.toDataURL("image/png");      // Get the data as an image.
+      var myImage3 = canvasToImg3.toDataURL("image/jpeg");      // Get the data as an image.
     }
     // lisätty
     // ladataan data kaavioihin
