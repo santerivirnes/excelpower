@@ -218,7 +218,7 @@ function keskiHajonta(keskiArvo1, keskiArvo2) {
   if(keskiArvo1 == null || keskiArvo2 == null){
     return 0;
   } else {
-		return math.format(math.std(keskiArvo1, keskiArvo2), {precision: 2});    // palauttaa 2 desimaalin tarkkuudella
+		return math.format(math.std(keskiArvo1, keskiArvo2), {notation: 'fixed', precision: 2});    // palauttaa 2 desimaalin tarkkuudella
   }
   }
 
