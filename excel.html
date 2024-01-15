@@ -546,10 +546,10 @@ var ExcelToJSON = function() {
                                                   json_muiden[i]["__EMPTY_35"]];
                               suhteet.push(getAvg(itseSuhteet));
                               if(json_muiden[i]["Erityisen hyvää hänessä on.."] != null){
-                              muidenkommenttiErityisenhyvaa =  muidenkommenttiErityisenhyvaa.concat(" " + json_muiden[i]["Erityisen hyvää hänessä on.."]);
+                              muidenkommenttiErityisenhyvaa =  muidenkommenttiErityisenhyvaa.concat(json_muiden[i]["Erityisen hyvää hänessä on.."] + "\n\n");
                               }
                               if(json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"] != null){
-                              muidenkommenttiMikaauttaisi = muidenkommenttiMikaauttaisi.concat(" " + json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"]);
+                              muidenkommenttiMikaauttaisi = muidenkommenttiMikaauttaisi.concat(json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"] + "\n\n");
                               }
                               N++
 
