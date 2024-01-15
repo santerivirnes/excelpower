@@ -36,7 +36,7 @@
 <script src="kaavio.js"></script>
 <script>
 
-function luoPDF(kokoNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko) {
+function luoPDF(N, kokoNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko) {
 
 // ALoitetaan PDF:n tekeminen
 
@@ -55,7 +55,7 @@ doc.text(10, 30, "Henkilökohtainen johtamistyyli - miten toimin muutoksen tuuli
 
 // lisätään vastaajien määrä
 
-let vastaajia = 3;
+let vastaajia = N;
 doc.text(10, 40, "Palautetta vastaajasta antoi " + vastaajia + " henkilöä.");
 
 
@@ -474,6 +474,9 @@ var ExcelToJSON = function() {
 
             var muidenkommenttiErityisenhyvaa = "";
             var muidenkommenttiMikaauttaisi = "";
+
+            var N = 0;
+
             var div = document.createElement("div");
             div.setAttribute("id", "arvot_ka_" + k);
 
@@ -548,7 +551,7 @@ var ExcelToJSON = function() {
                               if(json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"] != null){
                               muidenkommenttiMikaauttaisi = muidenkommenttiMikaauttaisi.concat(" " + json_muiden[i]["Mikä auttaisi häntä kehittymään vielä paremmaksi johtajaksi?"]);
                               }
-                              
+                              N++
 
                   }
 
@@ -839,7 +842,7 @@ var ExcelToJSON = function() {
                       
              
     
-            luoPDF(omaDataNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko);
+            luoPDF(N, omaDataNimi, muidenkommenttiErityisenhyvaa, omakommenttiErityisenhyvaa, muidenkommenttiMikaauttaisi, omakommenttiMikaauttaisi, radarkaavio, pylvasdiagrammi1, pylvasdiagrammi2, ...arvotaulukko);
           }
         }
         })
